@@ -1,0 +1,82 @@
+I believe I found another algorithm for listing the n! permutations, and it 
+can also be adapted for Functional Programming languages. As a proof of 
+concept here it is in Haskell:
+
+[code]
+------------------------------
+
+-- (gradual_transfer set empty_set)
+--
+-- Gradually pops elements out of set and &l;1..5&r; pushes them into empty_set,
+-- and makes a list of both stacks in their intermediate phases.
+--
+-- E.g:
+-- gradual_transfer &l;1 .. 5&r; &l;&r; =
+-- &l;(&l;1,2,3,4,5&r;,&l;&r;),(&l;2,3,4,5&r;,&l;1&r;),(&l;3,4,5&r;,&l;2,1&r;),
+--  (&l;4,5&r;,&l;3,2,1&r;),(&l;5&r;,&l;4,3,2,1&r;)&r;
+gradual_transfer :: &l;a&r; -> &l;a&r; -> &l;(&l;a&r;,&l;a&r;)&r;
+-- I stop when the list contains a single element, not when it contains
+-- no elements at all. The reason for this is that gen_perms like it better
+-- this way, as it has no use of a zero element (a:as).
+gradual_transfer (a:&l;&r;) ps = &l;((a:&l;&r;),ps)&r;
+gradual_transfer (a:as) ps = ((a:as),ps):(gradual_transfer as (a:ps))
+
+-- (dump ps as) is equivalent to (reverse ps) ++ as, only it should
+-- be much faster.
+dump :: &l;a&r; -> &l;a&r; -> &l;a&r;
+dump &l;&r; as = as
+dump (p:ps) as = dump ps (p:as)
+
+gen_perms :: &l;a&r; -> &l;&l;a&r;&r;
+
+gen_perms &l;&r; = &l;&l;&r;&r;
+
+gen_perms set = &l; (a:rest) | 
+                        (a:as,ps) <- (gradual_transfer set &l;&r;), 
+                        rest <- gen_perms(dump ps as)
+                &r;
+
+
+print_perms &l;&r; = return ()
+print_perms (a:as) = do print a
+                        print_perms as
+
+main = print_perms (gen_perms &l;1 .. 8&r;)
+----------------------------------
+[/code]
+
+And here's a Perl version:
+
+[code]
+#!/usr/bin/perl
+
+use strict;
+
+sub gen_perms
+{
+    my $prefix_ptr = shift;
+    my $set_ptr = shift;
+
+    if (! scalar(@$set_ptr))
+    {
+        print join(",",@$prefix_ptr),"\n";
+        return;
+    }
+    
+    my $elem;
+    my @prev_elems;
+    
+    while ($elem = shift(@$set_ptr))
+    {
+        &gen_perms(&l; @$prefix_ptr, $elem &r;, &l;@prev_elems, @$set_ptr&r;);
+        push @prev_elems, $elem;
+    }
+}
+
+my $how_many = shift || 4;
+
+gen_perms(&l; &r;, &l;1 .. $how_many&r;);
+[/code]
+
+
+
