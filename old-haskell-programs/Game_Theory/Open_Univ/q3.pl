@@ -12,10 +12,10 @@ sub gen_perms
         print join(",",@$prefix_ptr),"\n";
         return;
     }
-    
+
     my $elem;
     my @prev_elems;
-    
+
     while ($elem = shift(@$set_ptr))
     {
         &gen_perms([ @$prefix_ptr, $elem ], [@prev_elems, @$set_ptr]);

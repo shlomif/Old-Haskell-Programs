@@ -7,6 +7,6 @@ gen_perms :: [a] -> [[a]]
 
 gen_perms [] = [[]]
 
--- The reverse is not absolutely needed, but it does help maintain a more 
+-- The reverse is not absolutely needed, but it does help maintain a more
 -- consistent order. I'd like to find a way to get rid of the ++, though
 gen_perms set = [ (a:rest) | (a:as,ps) <- (gradual_transfer set []), rest <- gen_perms(reverse(ps) ++ as)]

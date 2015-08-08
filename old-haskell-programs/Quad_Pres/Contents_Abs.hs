@@ -7,7 +7,7 @@ get_image_mime_type (MakeContents_Image url mime) = mime
 
 make_image url mime = (MakeContents_Image url mime)
 
---data Contents_Node url title subs images is_dir = 
+--data Contents_Node url title subs images is_dir =
 --    MakeContents_Node url title subs images is_dir
 
 --newtype QuadPres_Contents_Node = Contents_Node String String [QuadPres_Contents_Node] [Contents_Image String String] Bool

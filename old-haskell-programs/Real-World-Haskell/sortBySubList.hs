@@ -1,7 +1,7 @@
 import Data.List
 
 ordByLen :: [a] -> [a] -> Ordering
-ordByLen xs ys 
+ordByLen xs ys
     | xl > yl  = GT
     | xl < yl  = LT
     | xl == yl = EQ

@@ -25,8 +25,8 @@ gen_perms :: [a] -> [[a]]
 
 gen_perms [] = [[]]
 
-gen_perms set = [ (a:rest) | 
-                        (a:as,ps) <- (gradual_transfer set []), 
+gen_perms set = [ (a:rest) |
+                        (a:as,ps) <- (gradual_transfer set []),
                         rest <- gen_perms(dump ps as)
                 ]
 

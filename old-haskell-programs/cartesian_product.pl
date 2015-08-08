@@ -6,18 +6,18 @@ sub cartesian_product
     }
     else
     {
-        return 
-        (map 
-        { 
-            my $i = $_ ; 
-            (map 
-            { 
-                my $is = $_; 
-                [$i, @{$is}] 
-            } 
+        return
+        (map
+        {
+            my $i = $_ ;
+            (map
+            {
+                my $is = $_;
+                [$i, @{$is}]
+            }
             cartesian_product(@_[1..$#_])
             )
-        } 
+        }
         @{$_[0]}
         );
     }

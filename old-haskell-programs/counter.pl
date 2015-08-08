@@ -3,9 +3,9 @@ sub counter
 {
     my $a = shift;
 
-    my $next = sub { 
-        my $to_add = shift ; 
-        return counter($to_add+$a); 
+    my $next = sub {
+        my $to_add = shift ;
+        return counter($to_add+$a);
     };
 
     return ($a, $next);

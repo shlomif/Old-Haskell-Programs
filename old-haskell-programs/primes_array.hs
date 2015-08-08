@@ -12,7 +12,7 @@ primes_map how_much = accumArray (\x -> \y -> y) True (2,how_much)
         multipliers p = [ (i*step+p) | i <- [0 .. mylimit] ] where
             step = (if (p == 2) then 1 else 2)
             mylimit = (how_much `div` p - p) `div` step
-            
+
 
 get_primes_list :: Array Int Bool -> [Int]
 get_primes_list pmap = (filter (pmap!) (indices pmap))

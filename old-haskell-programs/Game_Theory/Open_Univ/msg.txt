@@ -1,5 +1,5 @@
-I believe I found another algorithm for listing the n! permutations, and it 
-can also be adapted for Functional Programming languages. As a proof of 
+I believe I found another algorithm for listing the n! permutations, and it
+can also be adapted for Functional Programming languages. As a proof of
 concept here it is in Haskell:
 
 [code]
@@ -31,8 +31,8 @@ gen_perms :: &l;a&r; -> &l;&l;a&r;&r;
 
 gen_perms &l;&r; = &l;&l;&r;&r;
 
-gen_perms set = &l; (a:rest) | 
-                        (a:as,ps) <- (gradual_transfer set &l;&r;), 
+gen_perms set = &l; (a:rest) |
+                        (a:as,ps) <- (gradual_transfer set &l;&r;),
                         rest <- gen_perms(dump ps as)
                 &r;
 
@@ -62,10 +62,10 @@ sub gen_perms
         print join(",",@$prefix_ptr),"\n";
         return;
     }
-    
+
     my $elem;
     my @prev_elems;
-    
+
     while ($elem = shift(@$set_ptr))
     {
         &gen_perms(&l; @$prefix_ptr, $elem &r;, &l;@prev_elems, @$set_ptr&r;);
