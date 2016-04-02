@@ -4,9 +4,9 @@ prime_bound :: Int -> Int
 prime_bound a = (floor(fromIntegral(how_much)/fromIntegral(a)))
 
 primes_remove :: Int -> [Int] -> [Int]
-primes_remove p primes = 
+primes_remove p primes =
     primes_remove_helper (p*p) primes where
-    primes_remove_helper remove_what (a:as) = 
+    primes_remove_helper remove_what (a:as) =
         if (a < remove_what)
         then (primes_remove_helper remove_what as)
         else if (a == remove_what)
@@ -26,7 +26,7 @@ primes = sieve [2..how_much] where
 --         remove _ a = a
 
 how_much :: Int
-how_much = 10000 
+how_much = 10000
 
 mybound :: Int
 mybound = ceiling(sqrt(fromIntegral how_much))

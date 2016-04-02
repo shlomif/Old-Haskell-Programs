@@ -4,7 +4,7 @@ use strict;
 
 my (@primes, $a, $p);
 @primes = (2);
-MAIN_LOOP: 
+MAIN_LOOP:
 for($a = 3; $a < 1000; $a++)
 {
     foreach $p (@primes)

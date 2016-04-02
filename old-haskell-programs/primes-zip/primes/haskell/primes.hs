@@ -14,7 +14,7 @@ mybound :: Integer
 mybound = ceiling(sqrt(fromInteger(how_much)))
 --mybound = sqrt(how_much)
 
-next_primes_map :: Integer -> Array Integer Integer -> Array Integer Integer 
+next_primes_map :: Integer -> Array Integer Integer -> Array Integer Integer
 next_primes_map a prev_primes_map = if (a == mybound) then prev_primes_map else next_primes_map (a+1) (generate_next_primes_map a prev_primes_map)
 
 generate_next_primes_map :: Integer -> Array Integer Integer -> Array Integer Integer

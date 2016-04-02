@@ -9,7 +9,7 @@ primes = sieve [2..how_much] where
          remove _ a = a
 
 how_much :: Int
-how_much = 500000 
+how_much = 500000
 
 mybound :: Int
 mybound = ceiling(sqrt(fromIntegral how_much))

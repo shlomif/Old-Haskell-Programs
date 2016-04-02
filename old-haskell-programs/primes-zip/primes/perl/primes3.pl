@@ -28,7 +28,7 @@ sub primes
             {
                 $index = $primes_linked_list[$prev_index] = $primes_linked_list[$index];
             }
-            $what += $step; 
+            $what += $step;
         }
 
         push @primes, $prime;
@@ -39,7 +39,7 @@ sub primes
         push @primes, $prime;
         $prime = $primes_linked_list[$prime];
     }
-    
+
     return \@primes;
 }
 

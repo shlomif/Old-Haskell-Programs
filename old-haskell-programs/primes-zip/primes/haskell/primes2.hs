@@ -4,7 +4,7 @@ import Prelude
 import Array
 
 how_much :: Int
-how_much = 1000 
+how_much = 1000
 
 initial_primes_map :: Array Int Int
 initial_primes_map = array (1, how_much) [ (i,1) | i <- [1 .. how_much] ]
@@ -14,7 +14,7 @@ mybound :: Int
 mybound = ceiling(sqrt(fromInteger(toInteger(how_much))))
 --mybound = sqrt(how_much)
 
-next_primes_map :: Int -> Array Int Int -> Array Int Int 
+next_primes_map :: Int -> Array Int Int -> Array Int Int
 next_primes_map a prev_primes_map = if (a == mybound) then prev_primes_map else next_primes_map (a+1) (generate_next_primes_map a prev_primes_map)
 
 generate_next_primes_map :: Int -> Array Int Int -> Array Int Int
